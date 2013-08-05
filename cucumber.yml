@@ -1,0 +1,1 @@
+parallel: --format progress --format ParallelTests::Cucumber::FailuresLogger --out tmp/cucumber_failures.log --format junit --out reports/

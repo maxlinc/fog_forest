@@ -1,0 +1,5 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem "knife-rackspace", :git => 'git@github.com:opscode/knife-rackspace.git'
+gem 'fog', :git => 'git@github.com:fog/fog.git'
