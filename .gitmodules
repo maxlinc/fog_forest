@@ -1,0 +1,3 @@
+[submodule "sdks/paperclip_demo"]
+	path = sdks/paperclip_demo
+	url = git@github.com:maxlinc/paperclip_demo.git

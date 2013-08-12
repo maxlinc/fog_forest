@@ -5,6 +5,14 @@ Given(/^I have installed (.*)$/) do | sdk |
   }
 end
 
+# This is to use projects like paperclip_demo as-in, without introducing a bootstrap.sh file
+Given(/^I have bundled (.*)$/) do | sdk |
+  @dirs = ["sdks/#{sdk}"]
+  steps %Q{
+    And I run `bundle install --quiet`
+  }
+end
+
 Given(/^I have Rackspace credentials available$/) do
   fail unless ENV['RAX_USERNAME'] && ENV['RAX_API_KEY']
 end
