@@ -1,5 +1,5 @@
 When(/^I get the server from "(.*?)"$/) do |label|
-  @server_id = all_output.match(/#{label}\s(\w*)/)[1]
+  @server_id = all_output.match(/#{label}\s([\w-]*)/)[1]
 end
 
 When(/^I load the server$/) do

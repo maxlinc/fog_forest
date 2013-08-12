@@ -26,3 +26,11 @@ When(/^I execute the following code:$/) do |string|
     Then the exit status should be 0
   }
 end
+
+Given(/^I set:$/) do |table|
+  table.hashes.each do |hash|
+    hash.each_pair do |key, value|
+      ENV[key] = value
+    end
+  end
+end

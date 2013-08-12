@@ -1,3 +1,4 @@
+# require File.expand_path('../../../vcr.rb', __FILE__)
 config_dir = "#{ENV['HOME']}/.chef"
 log_level                :info
 log_location             STDOUT
@@ -12,4 +13,4 @@ cookbook_path            ["#{config_dir}/../cookbooks"]
 
 knife[:rackspace_api_username] = "#{ENV['RAX_USERNAME']}"
 knife[:rackspace_api_key] = "#{ENV['RAX_API_KEY']}"
-
+knife[:rackspace_region] = "#{ENV['RAX_REGION'].downcase}"

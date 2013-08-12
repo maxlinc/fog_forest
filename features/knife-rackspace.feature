@@ -10,7 +10,7 @@ Feature: knife-rackspace fog tests
     And I have Rackspace credentials available
 
   Scenario: List Flavors
-    When I successfully run `bundle exec knife rackspace flavor list`
+    When I successfully run `bundle exec knife rackspace flavor list -c knife.rb`
     # Having trouble with multiline contains
     Then the output should contain:
     """
@@ -18,14 +18,14 @@ Feature: knife-rackspace fog tests
     """
 
   Scenario: List Images
-    When I successfully run `bundle exec knife rackspace image list`
+    When I successfully run `bundle exec knife rackspace image list -c knife.rb`
     Then the output should contain:
     """
 Ubuntu 12.04
     """
 
   Scenario: List Networks
-    When I successfully run `bundle exec knife rackspace network list`
+    When I successfully run `bundle exec knife rackspace network list -c knife.rb`
     Then the output should match:
     """
     public\s*00000000-0000-0000-0000-000000000000
@@ -33,7 +33,7 @@ Ubuntu 12.04
 
   @network
   Scenario: Create a Network
-    When I successfully run `bundle exec knife rackspace network create -L test-network -C 10.0.0.0/24`
+    When I successfully run `bundle exec knife rackspace network create -L test-network -C 10.0.0.0/24 -c knife.rb`
     Then the output should contain:
     """
     Label: test-network
@@ -43,12 +43,18 @@ Ubuntu 12.04
   @network
   Scenario: Delete a Network
     Given I have a network available
-    When I successfully run `bash -c 'bundle exec knife rackspace network delete -y $network'`
+    When I successfully run `bash -c 'bundle exec knife rackspace network delete -y $network -c knife.rb'`
     Then the output should contain "Deleted network"
 
 
   @slow
+  @creates_server
   Scenario: Create a Server
     When I successfully run `bundle exec knife rackspace server create -c knife.rb --rackspace-version 2 -I e4dbdba7-b2a4-4ee5-8e8f-4595b6d694ce -f 2 -N knife-rackspace-server`
     And I get the server from "Instance ID:"
     Then the server should be active
+
+  @slow
+  @creates_server
+  @pending
+  Scenario: Create a Windows Server
