@@ -13,7 +13,7 @@ Feature: vagrant-rackspace fog tests
     Given a file named "Vagrantfile" with:
     """
     # Include our VCR setup for testing
-    require File.expand_path('../../../vcr.rb', __FILE__)
+    # require File.expand_path('../../../vcr.rb', __FILE__)
 
     Vagrant.configure("2") do |config|
       # dev/test method of loading plugin, normally would be 'vagrant plugin install vagrant-rackspace'
