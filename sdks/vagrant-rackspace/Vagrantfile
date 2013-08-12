@@ -1,0 +1,18 @@
+# Include our VCR setup for testing
+require File.expand_path('../../../vcr.rb', __FILE__)
+
+Vagrant.configure("2") do |config|
+  # dev/test method of loading plugin, normally would be 'vagrant plugin install vagrant-rackspace'
+  Vagrant.require_plugin "vagrant-rackspace"
+
+  config.vm.box = "dummy"
+  config.ssh.private_key_path = "~/.ssh/id_rsa"
+
+  config.vm.provider :rackspace do |rs|
+    rs.username = ENV['RAX_USERNAME']
+    rs.api_key  = ENV['RAX_API_KEY']
+    rs.flavor   = /512MB/
+    rs.image    = /Ubuntu/
+    rs.public_key_path = "~/.ssh/id_rsa.pub"
+  end
+end
